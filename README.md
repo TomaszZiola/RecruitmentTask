@@ -6,9 +6,9 @@ To add a reservation, please send JSON to the following address:
 
 JSON should have the following structure:
 
-{
-  "nameOfTenant" : "name",
-  "fromDateRent" : "YYYY-MM-DD",
-  "toDateRent" : "YYYY-MM-DD",
-  "objectToRentId" : "object_id"
-}
+    {
+     "nameOfTenant" : "name",
+     "fromDateRent" : "YYYY-MM-DD",
+     "toDateRent" : "YYYY-MM-DD",
+     "objectToRentId" : "object_id"
+    }

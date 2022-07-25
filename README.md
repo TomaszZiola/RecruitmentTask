@@ -2,7 +2,7 @@ Solution of the recruitment task. To run the repository, you need to download it
 
 To add a reservation, please send JSON to the following address:
 
-/ createReservation
+    /createReservation
 
 JSON should have the following structure:
 

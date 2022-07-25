@@ -25,11 +25,13 @@ JSON should be of the form:
     }
     
     To obtain a list of reservations broken down by the name of the tenant, please send JSON to the following address:
-/ tenantsReservations / {tenantName}
+    
+     /tenantsReservations/{tenantName}
 
 where tenantName is the tenant's last name.
 
 To obtain a list of reservations broken down by a given object for rent, please send JSON to the following address:
-/ objectsReservations / {objectId}
+
+     /objectsReservations/{objectId}
 
 where objectId is the identification number of the object in the database.

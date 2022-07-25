@@ -5,19 +5,15 @@ import com.ziola.recruitmenttask.objectstorent.ObjectToRent;
 import com.ziola.recruitmenttask.reservations.Reservation;
 import com.ziola.recruitmenttask.reservations.ReservationDAO;
 import com.ziola.recruitmenttask.tenants.Tenant;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -33,19 +29,9 @@ public class ReservationControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
-    private static MockHttpServletRequest request;
-    @PersistenceContext
-    private EntityManager entityManager;
     @MockBean
     ReservationDAO reservationDAO;
 
-
-    @BeforeAll
-    public static void setUp() {
-        request = new MockHttpServletRequest();
-        request.setParameter("nameOfTenant", "Jan Kowalski");
-
-    }
 
     @Test
     public void shouldReturnReservationsByObjectId() throws Exception {

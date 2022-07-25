@@ -24,7 +24,7 @@ JSON should be of the form:
      "toDateRent": "2023-12-07",
     }
     
-    To obtain a list of reservations broken down by the name of the tenant, please send JSON to the following address:
+To obtain a list of reservations broken down by the name of the tenant, please send JSON to the following address:
     
      /tenantsReservations/{tenantName}
 

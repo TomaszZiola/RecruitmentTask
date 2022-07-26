@@ -3,21 +3,26 @@ package com.ziola.recruitmenttask.reservations;
 import com.ziola.recruitmenttask.landlords.Landlord;
 import com.ziola.recruitmenttask.objectstorent.ObjectToRent;
 import com.ziola.recruitmenttask.tenants.Tenant;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Objects;
 
-@Data
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "reservations")
 public class Reservation {
 
     @Id
-    @GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
+    @SequenceGenerator(name = "reservation_seq", sequenceName = "reservation_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE , generator = "reservation_seq")
     @Column(name = "reservation_id")
     private Long id;
 
@@ -106,5 +111,18 @@ public class Reservation {
         public Reservation build() {
             return new Reservation(id, rentCost, fromDateRent, toDateRent, tenant, landlord, objectToRent);
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Reservation that = (Reservation) o;
+        return id != null && Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
     }
 }

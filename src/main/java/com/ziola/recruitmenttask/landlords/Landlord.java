@@ -17,8 +17,7 @@ import java.util.Objects;
 public class Landlord {
 
     @Id
-    @SequenceGenerator(name = "landlord_seq", sequenceName = "landlord_seq", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE , generator = "landlord_seq")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "landlord_id")
     private Long id;
 

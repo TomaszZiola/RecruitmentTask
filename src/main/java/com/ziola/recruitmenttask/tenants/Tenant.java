@@ -18,15 +18,14 @@ import java.util.Objects;
 public class Tenant {
 
     @Id
-    @SequenceGenerator(name = "tenant_id_seq", sequenceName = "tenant_id_seq", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tenant_id_seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "tenant_id")
     private Long id;
 
     @Column(name = "tenant_name")
     private String name;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "tenant")
+    @OneToMany(mappedBy = "tenant", fetch = FetchType.LAZY)
     @ToString.Exclude
     List<Reservation> reservations;
 

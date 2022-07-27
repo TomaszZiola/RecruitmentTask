@@ -20,8 +20,7 @@ import java.util.Objects;
 public class Reservation {
 
     @Id
-    @SequenceGenerator(name = "reservation_seq", sequenceName = "reservation_seq", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE , generator = "reservation_seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "reservation_id")
     private Long id;
 

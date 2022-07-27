@@ -36,8 +36,8 @@ public class ReservationDAOImpl implements ReservationDAO {
 
     @Override
     public List<Reservation> findAllReservationsByObjectId(Long id) {
-        Query query = entityManager.createQuery("FROM Reservation where object_to_rent_id =:tenantId");
-        query.setParameter("tenantId", id);
+        Query query = entityManager.createQuery("FROM Reservation where object_to_rent_id =:objectId");
+        query.setParameter("objectId", id);
         return query.getResultList();
     }
 }

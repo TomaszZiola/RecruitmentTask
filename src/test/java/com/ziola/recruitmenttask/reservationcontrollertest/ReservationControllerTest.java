@@ -5,6 +5,8 @@ import com.ziola.recruitmenttask.objectstorent.ObjectToRent;
 import com.ziola.recruitmenttask.reservations.Reservation;
 import com.ziola.recruitmenttask.reservations.ReservationDAO;
 import com.ziola.recruitmenttask.tenants.Tenant;
+import org.junit.jupiter.api.DisplayNameGeneration;
+import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,7 @@ import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 
+@DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 @SpringBootTest
 @AutoConfigureMockMvc
 public class ReservationControllerTest {
@@ -34,7 +37,7 @@ public class ReservationControllerTest {
 
 
     @Test
-    public void shouldReturnReservationsByObjectId() throws Exception {
+    public void should_Return_Reservations_By_ObjectId() throws Exception {
 
         Mockito.when(reservationDAO.findAllReservationsByObjectId(1L)).thenReturn(createReservationList());
 
@@ -48,15 +51,14 @@ public class ReservationControllerTest {
     private List<Reservation> createReservationList() {
         List<Reservation> reservationList = new ArrayList<>();
 
-
         Reservation reservation1 = Reservation.builder()
-                        .toDateRent(LocalDate.of(2022, 8, 6))
-                        .fromDateRent(LocalDate.of(2022, 8, 12))
-                        .rentCost(BigDecimal.valueOf(100))
-                        .tenant(new Tenant())
-                        .landlord(new Landlord())
-                        .objectToRent(new ObjectToRent())
-                         .build();
+                .toDateRent(LocalDate.of(2022, 8, 6))
+                .fromDateRent(LocalDate.of(2022, 8, 12))
+                .rentCost(BigDecimal.valueOf(100))
+                .tenant(new Tenant())
+                .landlord(new Landlord())
+                .objectToRent(new ObjectToRent())
+                .build();
 
         Reservation reservation2 = Reservation.builder()
                 .toDateRent(LocalDate.of(2022, 8, 1))

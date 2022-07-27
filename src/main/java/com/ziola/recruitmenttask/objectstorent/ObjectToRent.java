@@ -19,8 +19,7 @@ import java.util.Objects;
 public class ObjectToRent {
 
     @Id
-    @SequenceGenerator(name = "objects_to_rent_id_seq", sequenceName = "objects_to_rent_id_seq", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "objects_to_rent_id_seq")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "object_to_rent_id")
     private Long id;
 

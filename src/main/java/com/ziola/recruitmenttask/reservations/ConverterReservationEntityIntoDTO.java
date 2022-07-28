@@ -3,7 +3,7 @@ package com.ziola.recruitmenttask.reservations;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ConverterReservationEntityIntoDTO {
+class ConverterReservationEntityIntoDTO {
 
     public ReservationDTO convertEntity(Reservation reservation) {
         return new ReservationDTO.Builder()

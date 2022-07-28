@@ -16,6 +16,4 @@ public class ReservationRequestDTO {
     private Long objectToRentId;
 
     private String nameOfTenant;
-
-//    private String nameOfLandlord;
 }

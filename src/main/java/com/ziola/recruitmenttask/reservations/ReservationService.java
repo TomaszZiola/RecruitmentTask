@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
-public interface ReservationService {
+interface ReservationService {
 
     void checkIfDatesAreCorrect(LocalDate fromDateRent, LocalDate toDateRent, Long objectToRentId);
 

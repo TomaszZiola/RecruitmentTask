@@ -8,7 +8,5 @@ public interface ReservationDAO {
 
     void save(Reservation reservation);
 
-    List<Reservation> findAllReservationsByTenantId(Long id);
-
     List<Reservation> findAllReservationsByObjectId(Long objectId);
 }

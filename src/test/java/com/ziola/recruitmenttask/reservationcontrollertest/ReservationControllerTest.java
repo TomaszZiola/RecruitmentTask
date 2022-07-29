@@ -9,6 +9,7 @@ import com.ziola.recruitmenttask.tenants.TenantDAO;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -33,12 +34,13 @@ public class ReservationControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
-    @MockBean
+    @Mock
     ReservationDAO reservationDAO;
     @MockBean
     TenantDAO tenantDAO;
 
     Tenant johnTenant = new Tenant();
+    List<Reservation> reservationList = new ArrayList<>();
 
 
     @Test
@@ -55,11 +57,11 @@ public class ReservationControllerTest {
     @Test
     public void should_Return_Reservations_By_TenantName() throws Exception {
 
-        Mockito.when(reservationDAO.findAllReservationsByTenantId(1L)).thenReturn(createReservationList());
+        List<Reservation> reservations = createReservationList();
+        johnTenant.setReservations(reservations);
         Mockito.when(tenantDAO.findTenantByName("John")).thenReturn(johnTenant);
 
-        johnTenant.setName("John");
-        johnTenant.setId(1L);
+
 
         mockMvc.perform(MockMvcRequestBuilders.get("/tenantsReservations/John"))
                 .andExpect(status().isOk())
@@ -67,10 +69,11 @@ public class ReservationControllerTest {
                 .andExpect(jsonPath("$", hasSize(2)));
     }
 
+
     private List<Reservation> createReservationList() {
-        List<Reservation> reservationList = new ArrayList<>();
 
-
+        johnTenant.setName("John");
+        johnTenant.setId(1L);
 
         Reservation reservation1 = Reservation.builder()
                 .toDateRent(LocalDate.of(2022, 8, 6))

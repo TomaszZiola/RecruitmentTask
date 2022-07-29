@@ -71,13 +71,13 @@ public class ReservationServiceImpl implements ReservationService {
     @Override
     public List<ReservationDTO> findAllReservationsByTenantName(String tenantName) {
         Tenant tenant = tenantDAO.findTenantByName(tenantName);
-        List<Reservation> reservations = reservationDAO.findAllReservationsByTenantId(tenant.getId());
+        List<Reservation> reservations = tenant.getReservations();
+        if (reservations == null) {
+            throw new NoReservationFoundException("There are no reservations made by this tenant");
+        }
         List<ReservationDTO> reservationDTOS = new LinkedList<>();
         for (Reservation reservation : reservations) {
             reservationDTOS.add(converterReservationEntityIntoDTO.convertEntity(reservation));
-        }
-        if (reservationDTOS.isEmpty()) {
-            throw new NoReservationFoundException("There are no reservations made by this tenant");
         }
         return reservationDTOS;
     }

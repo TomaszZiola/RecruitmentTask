@@ -1,6 +1,5 @@
 package com.ziola.recruitmenttask.reservations;
 
-import com.ziola.recruitmenttask.tenants.Tenant;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -23,8 +22,7 @@ public class ReservationDAOImpl implements ReservationDAO {
     @Transactional
     @Override
     public void save(Reservation reservation) {
-        Reservation dbReservation = entityManager.merge(reservation);
-        entityManager.persist(dbReservation);
+        entityManager.persist(reservation);
     }
 
     @Override

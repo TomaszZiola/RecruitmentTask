@@ -1,12 +1,13 @@
 package com.ziola.recruitmenttask.landlords;
 
 import com.ziola.recruitmenttask.objectstorent.ObjectToRent;
-import lombok.*;
-import org.hibernate.Hibernate;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Objects;
 
 @Getter
 @Setter
@@ -27,17 +28,4 @@ public class Landlord {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "landlord")
     @ToString.Exclude
     private List<ObjectToRent> objectToRent;
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Landlord landlord = (Landlord) o;
-        return id != null && Objects.equals(id, landlord.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return getClass().hashCode();
-    }
 }

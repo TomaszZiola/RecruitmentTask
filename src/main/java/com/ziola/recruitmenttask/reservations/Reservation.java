@@ -3,13 +3,14 @@ package com.ziola.recruitmenttask.reservations;
 import com.ziola.recruitmenttask.landlords.Landlord;
 import com.ziola.recruitmenttask.objectstorent.ObjectToRent;
 import com.ziola.recruitmenttask.tenants.Tenant;
-import lombok.*;
-import org.hibernate.Hibernate;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Objects;
 
 @Getter
 @Setter
@@ -33,15 +34,15 @@ public class Reservation {
     @Column(name = "to_date_rent")
     private LocalDate toDateRent;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tenant_id")
     private Tenant tenant;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "landlord_id")
     private Landlord landlord;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "object_to_rent_id")
     private ObjectToRent objectToRent;
 
@@ -114,9 +115,8 @@ public class Reservation {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Reservation that = (Reservation) o;
-        return id != null && Objects.equals(id, that.id);
+        if(!(o instanceof Reservation)) return false;
+        return id != null && id.equals(((Reservation) o).id);
     }
 
     @Override

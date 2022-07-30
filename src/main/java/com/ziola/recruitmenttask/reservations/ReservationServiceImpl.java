@@ -85,12 +85,12 @@ public class ReservationServiceImpl implements ReservationService {
     @Override
     public List<ReservationDTO> findAllReservationsByObjectId(Long objectId) {
         List<Reservation> reservations = reservationDAO.findAllReservationsByObjectId(objectId);
+        if (reservations.isEmpty()) {
+            throw new NoReservationFoundException("There are no reservations for this object");
+        }
         List<ReservationDTO> reservationDTOS = new LinkedList<>();
         for (Reservation reservation : reservations) {
             reservationDTOS.add(converterReservationEntityIntoDTO.convertEntity(reservation));
-        }
-        if (reservationDTOS.isEmpty()) {
-            throw new NoReservationFoundException("There are no reservations for this object");
         }
         return reservationDTOS;
     }

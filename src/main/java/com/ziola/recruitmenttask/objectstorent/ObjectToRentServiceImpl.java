@@ -1,6 +1,5 @@
 package com.ziola.recruitmenttask.objectstorent;
 
-import com.ziola.recruitmenttask.tenants.TenantDAO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +11,6 @@ import java.time.LocalDate;
 public class ObjectToRentServiceImpl implements ObjectToRentService {
 
     private final ObjectToRentDAO objectToRentDAO;
-    private final TenantDAO tenantDAO;
 
     @Override
     public BigDecimal calculateAmountToPay(LocalDate start, LocalDate end, Long objectToRentId) {

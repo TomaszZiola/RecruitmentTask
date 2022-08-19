@@ -17,4 +17,8 @@ interface ReservationService {
     List<ReservationDTO> findAllReservationsByTenantName(String tenantName);
 
     List<ReservationDTO> findAllReservationsByObjectId(Long objectId);
+
+    ReservationResponseDTO takeAndProceedDTO(ReservationRequestDTO reservationRequestDTO);
+
+    ReservationResponseDTO takeDTOUpdateReservation(UpdateReservationDTO updateReservationDTO);
 }
